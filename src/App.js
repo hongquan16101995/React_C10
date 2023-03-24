@@ -1,7 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import YourName from "./bai2/YourName";
 import Syntax from "./bai2/Syntax";
+import InformationBrowser from "./bai2/InformationBrowser";
+import InformationBrowser2 from "./bai2/InformationBrowser2";
 
 function App() {
     return (
@@ -12,7 +13,9 @@ function App() {
                 <Syntax></Syntax>
             </div>
             <div>
-                <h1>Test</h1>
+                <h3>Bài 2</h3>
+                <InformationBrowser></InformationBrowser>
+                <InformationBrowser2 test = {[{name:'C1022I2'}]}></InformationBrowser2>
             </div>
         </>
     );
