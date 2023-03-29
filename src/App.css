@@ -37,8 +37,17 @@
   }
 }
 
-tr, th, td {
-  border: 1px solid;
+#th-description {
+  width: 45%;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  width: 450px;
+  margin: auto;
 }
 
 .error {
