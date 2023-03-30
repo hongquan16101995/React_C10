@@ -2,6 +2,7 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup'
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
+import HomeTour from "./HomeTour";
 
 export default function FormCreate() {
     const navigate = useNavigate()
@@ -48,6 +49,7 @@ export default function FormCreate() {
                     </Form>
                 </Formik>
             </div>
+            <HomeTour></HomeTour>
         </>
     )
 
