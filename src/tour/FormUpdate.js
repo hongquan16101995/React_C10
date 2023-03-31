@@ -8,10 +8,14 @@ export default function FormUpdate() {
     const navigate = useNavigate()
     const param = useParams()
     const [tour, setTour] = useState({})
+    const [tourGuide, setTourGuide] = useState([])
 
     useEffect(() => {
         axios.get(`http://localhost:8000/tours/${param.id}`).then((response) => {
             setTour(response.data)
+        })
+        axios.get('http://localhost:8000/tour-guide').then((response) => {
+            setTourGuide(response.data)
         })
     }, [])
 
@@ -29,7 +33,8 @@ export default function FormUpdate() {
                     initialValues={{
                         title: tour.title,
                         price: tour.price,
-                        description: tour.description
+                        description: tour.description,
+                        tourGuide: tour.tourGuide
                     }}
                     onSubmit={(values) => {
                         save(values)
@@ -50,6 +55,15 @@ export default function FormUpdate() {
                         <div className="mb-3">
                             <label htmlFor="description" className="form-label">Description</label>
                             <Field type="text" name={'description'} className="form-control" id="description"/>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="tour-guide" className="form-label">TourGuide</label>
+                            <Field as={'select'} name={'tourGuide.id'} className="form-control" id="tour-guide">
+                                <option value={''}>-----------</option>
+                                {tourGuide.map((item, id) => (
+                                    <option key={id} value={item.id}>{item.name}</option>
+                                ))}
+                            </Field>
                         </div>
                         <div className="mb-3">
                             <button className={'btn btn-primary'}>Update</button>

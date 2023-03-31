@@ -3,9 +3,17 @@ import * as Yup from 'yup'
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import HomeTour from "./HomeTour";
+import {useEffect, useState} from "react";
 
 export default function FormCreate() {
     const navigate = useNavigate()
+    const [tourGuide, setTourGuide] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/tour-guide').then((response) => {
+            setTourGuide(response.data)
+        })
+    }, [])
 
     const Validation = Yup.object().shape({
         title: Yup.string().required("Required!").min(3, "Too short!"),
@@ -21,7 +29,10 @@ export default function FormCreate() {
                     initialValues={{
                         title: "",
                         price: "",
-                        description: ""
+                        description: "",
+                        tourGuide: {
+                            id: ""
+                        }
                     }}
                     onSubmit={(values) => {
                         save(values)
@@ -43,7 +54,17 @@ export default function FormCreate() {
                             <Field type="text" name={'description'} className="form-control" id="description"/>
                         </div>
                         <div className="mb-3">
-                            <button className={'btn btn-primary'}>Create</button> &ensp;
+                            <label htmlFor="tour-guide" className="form-label">TourGuide</label>
+                            <Field as={'select'} name={'tourGuide.id'} className="form-control" id="tour-guide">
+                                <option value={''}>-----------</option>
+                                {tourGuide.map((item, id) => (
+                                    <option key={id} value={item.id}>{item.name}</option>
+                                ))}
+                            </Field>
+                        </div>
+                        <div className="mb-3">
+                            <button className={'btn btn-primary'}>Create</button>
+                            &ensp;
                             <Link className={'btn btn-danger'} to={'/tours'}>Close</Link>
                         </div>
                     </Form>
@@ -54,6 +75,7 @@ export default function FormCreate() {
     )
 
     function save(values) {
+        console.log(values)
         axios.post('http://localhost:8000/tours', values).then(() => {
             navigate('/tours')
         })

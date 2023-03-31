@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function HomeTour() {
     const [tours, setTours] = useState([])
+    const [tour, setTour] = useState({})
     const navigate = useNavigate()
     let INDEX = 0
 
@@ -35,6 +36,7 @@ export default function HomeTour() {
                         <th>STT</th>
                         <th>Title</th>
                         <th>Price</th>
+                        <th>TourGuide</th>
                         <th id={'th-description'}>Description</th>
                         <th colSpan={2}>Action</th>
                     </tr>
@@ -44,9 +46,12 @@ export default function HomeTour() {
                         return (
                             <tr key={item.id}>
                                 <td>{++INDEX}</td>
-                                <td>{item.title}</td>
+                                <td>
+                                    <Link to={`/detail/${item.id}`}>{item.title}</Link>
+                                </td>
                                 <td>{item.price}</td>
                                 <td>{item.description}</td>
+                                <td>{item.tourGuide.name}</td>
                                 <td>
                                     <Link className={'btn btn-success'} to={`/form-update/${item.id}`}>Update</Link>
                                 </td>

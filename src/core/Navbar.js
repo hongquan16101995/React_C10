@@ -4,6 +4,7 @@ import FormProduct from "../product/FormProduct";
 import HomeTour from "../tour/HomeTour";
 import FormCreate from "../tour/FormCreate";
 import FormUpdate from "../tour/FormUpdate";
+import Detail from "../tour/Detail";
 
 export default function Navbar() {
     return (
@@ -16,6 +17,7 @@ export default function Navbar() {
                 <Route path={'tours'} element={<HomeTour/>}></Route>
                 <Route path={'form-create'} element={<FormCreate/>}></Route>
                 <Route path={'form-update/:id'} element={<FormUpdate/>}></Route>
+                <Route path={'detail/:id'} element={<Detail/>}></Route>
             </Routes>
         </>
     );
