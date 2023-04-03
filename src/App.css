@@ -53,3 +53,12 @@ form {
 .error {
   color: red;
 }
+
+img {
+  width: 150px;
+  height: 100px;
+}
+
+th {
+  width: 13%;
+}
